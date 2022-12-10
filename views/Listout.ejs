@@ -1,0 +1,17 @@
+<%- include("Header") -%>
+<section id="grad">
+    <div class="lx">
+        <div class="whbox">
+            <iframe class="videmb" frameborder="0" width="700" height="450"  src= <%= links %> ></iframe>
+        </div>
+        <div class="whbox2">
+            <h2 class="headoutput"> Scam comments.</h2>
+            <hr>
+        <% for (var i=0;i<lists.length; i++) { %>
+            <p id="outputtext"><span ><%= (i+1) %></span>. <%= lists[i] %></p>
+        <% } %>
+        </div>
+    </div>
+
+</section>
+<%- include("Footer") -%>
