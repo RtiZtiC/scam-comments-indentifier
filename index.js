@@ -5,10 +5,13 @@ const { PythonShell } = require("python-shell");
 const {spawn} = require('child_process');
 const fs = require("fs");
 var request = require('request-promise');
+var $=require("jquery");
+var jsdom = require("jsdom");
+var JSDOM = jsdom.JSDOM;
 
 
-var list=[];
-var displink="";
+let list=[];
+let displink="";
 
 app.set('view engine','ejs');
 app.use(express.static(__dirname+"/Public"));
@@ -23,20 +26,22 @@ app.get("/",function(req,resp)
     resp.render("List",{gayrintu:currentyear});
 });
 
-app.get("/Listout",function(req,resp)
-{
+// app.get("/Listout",function(req,resp)
+// {
   
 
-  // const jsonString = fs.readFileSync("D:/minor proj/python/scam_collection.json");
-  // var mydata = JSON.parse(jsonString);
-  // list=mydata.scam;
-  console.log("your desired list is"+list);
+//   // const jsonString = fs.readFileSync("D:/minor proj/python/scam_collection.json");
+//   // var mydata = JSON.parse(jsonString);
+//   // list=mydata.scam;
+//     // console.log("your desired list is"+list);
+//     resp.render("Listout",{lists:list,links:displink,gayrintu:currentyear});
+//     // setTimeout(function(list,displink,currentyear){
+//     //   // console.log("popolopo"+list)
+      
+//     // },5000);
+    
 
-  setTimeout(resp.render("Listout",{lists:list,links:displink,gayrintu:currentyear}),3000)
-
-
-
-});
+// });
 
 
 
@@ -82,7 +87,7 @@ app.post("/",function(req,resp)
       // You can do something with
       // returned data
       list=parsedBody.scam;
-      console.log(list);
+      console.log(typeof(list));
   })
   .catch(function (err) {
       console.log(err);
@@ -102,7 +107,9 @@ app.post("/",function(req,resp)
   // {
   //   console.log("power")
   // },5000);
-  resp.redirect("Listout");
+  console.log("madar"+" "+list)
+  resp.render("Listout",{lists:list,links:displink,gayrintu:currentyear});
+  // resp.redirect("Listout");
 
   // if (setTimeout(function(){console.log("hello")},5000))
   // {
