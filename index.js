@@ -10,7 +10,7 @@ var jsdom = require("jsdom");
 var JSDOM = jsdom.JSDOM;
 
 
-let list=[];
+var list=[];
 let displink="";
 
 app.set('view engine','ejs');
@@ -86,29 +86,24 @@ app.post("/",function(req,resp)
         
       // You can do something with
       // returned data
-      list=parsedBody.scam;
-      console.log(typeof(list));
+      lt=parsedBody.scam;
+      resp.render("Listout",{lists:lt,links:displink,gayrintu:currentyear});
+      console.log(lt);
   })
   .catch(function (err) {
       console.log(err);
   });
+
+  
   }
   
   commspy();
 
+    console.log("madar"+" "+ list)
 
-
-
-
-
-
-
-  // setTimeout(function(resp)
-  // {
-  //   console.log("power")
-  // },5000);
-  console.log("madar"+" "+list)
-  resp.render("Listout",{lists:list,links:displink,gayrintu:currentyear});
+  
+  
+  // list=[];
   // resp.redirect("Listout");
 
   // if (setTimeout(function(){console.log("hello")},5000))
